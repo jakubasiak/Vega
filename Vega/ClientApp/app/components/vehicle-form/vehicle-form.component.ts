@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MakeService } from "../../services/make.service";
 
 @Component({
   selector: 'app-vehicle-form',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VehicleFormComponent implements OnInit {
 
-  constructor() { }
+    makes: any[];
+    models: any[];
+    vehicle: any = {};
 
-  ngOnInit() {
-  }
+    constructor(private makeService: MakeService) { }
+
+    ngOnInit() {
+        this.makeService.getMakes().subscribe(makes => this.makes = makes);
+
+    }
+    onMakeChanged() {
+        var selectedMake = this.makes.find(make => make.name == this.vehicle.make);
+        this.models = selectedMake ? selectedMake.models : [];
+    }
 
 }
