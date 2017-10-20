@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { VehicleService } from "../../services/vehicle.service";
 import { ToastyService } from "ng2-toasty";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Observable } from "rxjs/Observable";
+import 'rxjs/add/Observable/forkJoin';
 
 @Component({
   selector: 'app-vehicle-form',
@@ -17,11 +20,32 @@ export class VehicleFormComponent implements OnInit {
         contact:{}
     };
 
-    constructor(private vehicleService: VehicleService, private toastyService: ToastyService) { }
+    constructor(
+        private vehicleService: VehicleService,
+        private toastyService: ToastyService,
+        private route: ActivatedRoute,
+        private router: Router) {
+        route.params.subscribe(p => {
+            this.vehicle.id = +p['id'];
+        });
+    }
 
     ngOnInit() {
-        this.vehicleService.getMakes().subscribe(makes => this.makes = makes);
-        this.vehicleService.getFeatures().subscribe(features => this.features = features);
+        var sources = [
+        this.vehicleService.getMakes(),
+        this.vehicleService.getFeatures()
+        ];
+
+        if (this.vehicle.id)
+            sources.push(this.vehicleService.getVehicle(this.vehicle.id));
+
+        Observable.forkJoin(sources).subscribe(data => {
+            this.makes = data[0];
+            this.features = data[1];
+
+            if (this.vehicle.id)
+                this.vehicle = data[2];
+        });
 
     }
     onMakeChanged() {
@@ -44,16 +68,7 @@ export class VehicleFormComponent implements OnInit {
     submit() {
         this.vehicleService.create(this.vehicle)
             .subscribe(
-            x => console.log(x),
-            err => {
-                this.toastyService.error({
-                    title: "My title",
-                    msg: "The message",
-                    showClose: true,
-                    timeout: 50000,
-                    theme: 'default'
-                });
-            });
+            x => console.log(x));
     }
 
 }

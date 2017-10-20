@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -13,6 +13,7 @@ import { CounterComponent } from './components/counter/counter.component';
 import { VehicleFormComponent } from './components/vehicle-form/vehicle-form.component';
 
 import { VehicleService } from "./services/vehicle.service";
+import { AppErrorHandler } from "./app.error-handler";
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { VehicleService } from "./services/vehicle.service";
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'vehicles/new', component: VehicleFormComponent },
+            { path: 'vehicles/:id', component: VehicleFormComponent },
             { path: 'home', component: HomeComponent },
             { path: 'counter', component: CounterComponent },
             { path: 'fetch-data', component: FetchDataComponent },
@@ -39,6 +41,7 @@ import { VehicleService } from "./services/vehicle.service";
         ])
     ],
     providers: [
+        {provide: ErrorHandler, useClass: AppErrorHandler},
         VehicleService
     ]
 })

@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppModuleShared } from './app.module.shared';
 import { AppComponent } from './components/app/app.component';
+import { ToastyModule } from 'ng2-toasty';
+
 
 @NgModule({
     bootstrap: [ AppComponent ],
