@@ -36,10 +36,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\models\contact.ts" />
+    <None Remove="ClientApp\app\models\saveVehicle.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Data\" />
-    <Folder Include="Core\Models\" />
     <Folder Include="Views\Shared\" />
     <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\models\contact.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\keyValuePair.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\saveVehicle.ts" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

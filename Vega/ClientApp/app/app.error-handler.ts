@@ -5,9 +5,7 @@ export class AppErrorHandler implements ErrorHandler {
     constructor(
         @Inject(NgZone) private ngZone: NgZone,
         @Inject(ToastyService) private toastyService: ToastyService,
-    )
-    {
-    }
+    ){}
     handleError(error: any): void {
         this.ngZone.run(() => {
             if (typeof (window) !== 'undefined') {

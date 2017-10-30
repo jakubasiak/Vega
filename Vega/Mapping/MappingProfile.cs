@@ -13,6 +13,7 @@ namespace Vega.Mapping
         public MappingProfile()
         {
             //Domain to API Resource
+            CreateMap<FilterResource, Filter>();
             CreateMap<Make, MakeResource>();
             CreateMap<Make, KeyValuePairResource>();
             CreateMap<Model, KeyValuePairResource>();

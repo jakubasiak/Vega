@@ -27,12 +27,12 @@ namespace Vega.Controllers
             this.unitOfWork = unitOfWork;
         }
         [HttpPost]
-        public async Task<IActionResult> CreateVehicle([FromBody]SaveVehicleResource SaveVehicleResource)
+        public async Task<IActionResult> CreateVehicle([FromBody]SaveVehicleResource saveVehicleResource)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var vehicle = mapper.Map<SaveVehicleResource, Vehicle>(SaveVehicleResource);
+            var vehicle = mapper.Map<SaveVehicleResource, Vehicle>(saveVehicleResource);
             vehicle.LastUpdate = DateTime.Now;
 
             repository.Add(vehicle);
@@ -96,6 +96,14 @@ namespace Vega.Controllers
             var vehicleResource = mapper.Map<Vehicle, VehicleResource>(vehicle);
 
             return Ok(vehicleResource);
+        }
+        [HttpGet]
+        public async Task<IEnumerable<VehicleResource>> GetVehicles(FilterResource filterResource)
+        {
+            var filter = mapper.Map<FilterResource, Filter>(filterResource);
+            var vehicles = await repository.GetVehicles(filter);
+
+            return mapper.Map<IEnumerable<Vehicle>, IEnumerable<VehicleResource>>(vehicles);
         }
     }
 }
