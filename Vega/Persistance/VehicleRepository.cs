@@ -2,9 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Vega.Core;
 using Vega.Core.Models;
+using Vega.Extensions;
 
 namespace Vega.Persistance
 {
@@ -41,7 +43,7 @@ namespace Vega.Persistance
             context.Vehicles.Remove(vehicle);
         }
 
-        public async Task<IEnumerable<Vehicle>> GetVehicles(Filter filter)
+        public async Task<IEnumerable<Vehicle>> GetVehicles(VehicleQuery queryObject)
         {
             var query = context.Vehicles
                 .Include(v=>v.Model)
@@ -50,10 +52,21 @@ namespace Vega.Persistance
                     .ThenInclude(vf => vf.Feature)
                 .AsQueryable();
 
-            if (filter.MakeId.HasValue)
-                query = query.Where(v => v.Model.MakeId == filter.MakeId.Value);
+            if (queryObject.MakeId.HasValue)
+                query = query.Where(v => v.Model.MakeId == queryObject.MakeId.Value);
+
+            if (queryObject.ModelId.HasValue)
+                query = query.Where(v => v.ModelId == queryObject.ModelId.Value);
+
+            var columnMap = new Dictionary<string, Expression<Func<Vehicle, object>>>() {
+                ["make"] = v => v.Model.Make.Name,
+                ["model"] = v => v.Model.Name,
+                ["contactName"] = v => v.ContactName,
+             };
+            query = query.ApplyOrdering(queryObject, columnMap);
 
             return await query.ToListAsync();
         }
+
     }
 }
