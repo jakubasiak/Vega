@@ -15,6 +15,7 @@ import { VehicleFormComponent } from './components/vehicle-form/vehicle-form.com
 import { VehicleService } from "./services/vehicle.service";
 import { AppErrorHandler } from "./app.error-handler";
 import { VehicleListComponent } from "./components/vehicle-list/vehicle-list.component";
+import { PaginationComponent } from "./components/pagination/pagination.component";
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { VehicleListComponent } from "./components/vehicle-list/vehicle-list.com
         FetchDataComponent,
         HomeComponent,
         VehicleFormComponent,
-        VehicleListComponent
+        VehicleListComponent,
+        PaginationComponent
     ],
     imports: [
         CommonModule,

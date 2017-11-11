@@ -9,9 +9,13 @@ import { KeyValuePair } from "../../models/keyValuePair";
     styleUrls: ['./vehicle-list.component.css']
 })
 export class VehicleListComponent implements OnInit {
-    vehicles: Vehicle[];
+    private readonly PAGE_SIZE = 5;
+
+    queryResult: any = {};
     makes: KeyValuePair[];
-    query: any = {};
+    query: any = {
+        pageSize: this.PAGE_SIZE
+    };
     columns = [
         { title: "Id", key: "id", isSortable: false },
         { title: "Make", key: "make", isSortable: true },
@@ -30,15 +34,19 @@ export class VehicleListComponent implements OnInit {
         this.populateVehicles();
     }
     onFilterChanged() {
+        this.query.page = 1;
         this.populateVehicles();
     }
     private populateVehicles() {
         this.vehicleService.getVehicles(this.query)
-            .subscribe(vehicles => this.vehicles = vehicles);
+            .subscribe(result => this.queryResult = result);
     }
     onResetFilter() {
-        this.query = {};
-        this.onFilterChanged();
+        this.query = {
+            page: 1,
+            pageSize: this.PAGE_SIZE
+        };
+        this.populateVehicles();
     }
     sortBy(columnName: string)
     {
@@ -49,6 +57,10 @@ export class VehicleListComponent implements OnInit {
             this.query.sortBy = columnName;
             this.query.isSortAscending = true;
         }
+        this.populateVehicles();
+    }
+    onPageChanged(page: number) {
+        this.query.page = page;
         this.populateVehicles();
     }
 }
