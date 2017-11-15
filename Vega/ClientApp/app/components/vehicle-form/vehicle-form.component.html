@@ -54,5 +54,4 @@
         <input id="contactEmail" type="text" value="" class="form-control" name="contactEmail" [(ngModel)]="vehicle.contact.email"/>
     </div>    
     <button class="btn btn-primary" [disabled]="!f.valid" type="submit">Save</button>
-    <button *ngIf="vehicle.id" class="btn btn-danger" type="button" (click)="delete()">Delete</button>
 </form>

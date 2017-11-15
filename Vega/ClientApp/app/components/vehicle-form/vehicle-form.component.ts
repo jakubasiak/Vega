@@ -9,9 +9,9 @@ import { Vehicle } from "../../models/vehicle";
 import { SaveVehicle } from "../../models/saveVehicle";
 
 @Component({
-  selector: 'app-vehicle-form',
-  templateUrl: './vehicle-form.component.html',
-  styleUrls: ['./vehicle-form.component.css']
+    selector: 'app-vehicle-form',
+    templateUrl: './vehicle-form.component.html',
+    styleUrls: ['./vehicle-form.component.css']
 })
 export class VehicleFormComponent implements OnInit {
 
@@ -27,7 +27,7 @@ export class VehicleFormComponent implements OnInit {
         contact: {
             name: '',
             email: '',
-            phone:''
+            phone: ''
         }
     };
 
@@ -37,14 +37,14 @@ export class VehicleFormComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router) {
         route.params.subscribe(p => {
-            this.vehicle.id = +p['id'];
+            this.vehicle.id = +p['id'] || 0;
         });
     }
 
     ngOnInit() {
         var sources = [
-        this.vehicleService.getMakes(),
-        this.vehicleService.getFeatures()
+            this.vehicleService.getMakes(),
+            this.vehicleService.getFeatures()
         ];
 
         if (this.vehicle.id)
@@ -61,8 +61,7 @@ export class VehicleFormComponent implements OnInit {
         });
 
     }
-    private setVehicle(v: Vehicle)
-    {
+    private setVehicle(v: Vehicle) {
         this.vehicle.id = v.id;
         this.vehicle.makeId = v.make.id;
         this.vehicle.modelId = v.model.id;
@@ -81,41 +80,30 @@ export class VehicleFormComponent implements OnInit {
     }
 
     onFeatureToggle(featureId: number, $event: any) {
-        if ($event.target.checked)
-        {
+        if ($event.target.checked) {
             this.vehicle.features.push(featureId);
         }
-        else
-        {
+        else {
             let index = this.vehicle.features.indexOf(featureId);
             this.vehicle.features.splice(index, 1);
         }
     }
     submit() {
-        if (this.vehicle.id)
-        {
-            this.vehicleService.update(this.vehicle)
-                .subscribe(x => {
-                    this.toastyService.success({
-                        title: 'Success',
-                        msg: 'The vehicle was sucessfully updated',
-                        theme: 'bootstrap',
-                        showClose: true,
-                        timeout:5000
-                    });
-                });
-        }
-        else
-        {
-            //console.log(this.vehicle);
-            //this.vehicle.id = 0;
-            this.vehicleService.create(this.vehicle)
-                .subscribe(
-                x => console.log(x));
-        }
+        var result$ = (this.vehicle.id) ? this.vehicleService.update(this.vehicle) : this.vehicleService.create(this.vehicle);
+
+        result$.subscribe(vehicle => {
+            this.toastyService.success({
+                title: 'Success',
+                msg: 'The vehicle was sucessfully saved',
+                theme: 'bootstrap',
+                showClose: true,
+                timeout: 5000
+            });
+            this.router.navigate(['/vehicles/', vehicle.id]);
+        });
+
     }
-    delete()
-    {
+    delete() {
         if (confirm("Are you sure?"))
             this.vehicleService.delete(this.vehicle.id).subscribe(x => {
                 this.router.navigate(['/home']);

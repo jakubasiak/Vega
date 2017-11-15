@@ -1,0 +1,83 @@
+[33mcommit 3de5495bbd90ab13789e48e119d0234251a9724b[m
+Author: Jakub Kubasiak <kubakubasiak@o2.pl>
+Date:   Sat Nov 11 15:51:13 2017 +0100
+
+    Add pagination
+
+[33mcommit 5d435b445b4874a49f470b278e2a37812e48cfdc[m
+Author: Jakub Kubasiak <kubakubasiak@o2.pl>
+Date:   Mon Nov 6 17:27:07 2017 +0100
+
+    Add sorting
+
+[33mcommit 200a8a12dc75544fde7d1e95f825cc70f765b159[m
+Author: Jakub Kubasiak <kubakubasiak@o2.pl>
+Date:   Mon Oct 30 19:26:42 2017 +0100
+
+    Add filters
+
+[33mcommit 776f77b72d78438e3bd208365767e8e614df4ddb[m
+Author: Jakub Kubasiak <kubakubasiak@o2.pl>
+Date:   Fri Oct 20 20:54:59 2017 +0200
+
+    Implementing update - part 1
+
+[33mcommit 6c608d12f2d166929dbdf358bb13345d339d039d[m
+Author: Jakub Kubasiak <kubakubasiak@o2.pl>
+Date:   Thu Oct 19 21:37:49 2017 +0200
+
+    form validation
+
+[33mcommit ddedc5d3934d9c5ceb71620d5eb470c78050219f[m
+Author: Jakub Kubasiak <kubakubasiak@o2.pl>
+Date:   Sat Oct 14 21:40:36 2017 +0200
+
+    Add repository
+
+[33mcommit 30ea3b89217acc80b0444b9fa08e0ae87f9f13f7[m
+Author: Jakub Kubasiak <kubakubasiak@o2.pl>
+Date:   Fri Oct 13 22:26:50 2017 +0200
+
+    Add CRUD operations
+
+[33mcommit 00b83847ac6b448cdb397182f52359a36c4a2243[m
+Author: Jakub Kubasiak <kubakubasiak@o2.pl>
+Date:   Thu Oct 12 20:49:54 2017 +0200
+
+    Add vehicle
+
+[33mcommit 7b61f4fb0e004ef066924930220ebc55543a272e[m
+Author: Jakub Kubasiak <kubakubasiak@o2.pl>
+Date:   Wed Oct 11 17:41:19 2017 +0200
+
+    add dynamic dropdowns
+
+[33mcommit dc1bfec9afc644026bdf4b3a07c52a297c28a269[m
+Author: Jakub Kubasiak <kubakubasiak@o2.pl>
+Date:   Tue Oct 10 18:17:37 2017 +0200
+
+    Create make form
+
+[33mcommit 595ab6ebf6e564d545850e1dc451cd8551577d2b[m
+Author: Jakub Kubasiak <kubakubasiak@o2.pl>
+Date:   Mon Oct 9 20:50:56 2017 +0200
+
+    Add first API
+
+[33mcommit 9a2cb5b37293a6cc20d4277a77caabaaccaa24d6[m
+Author: Jakub Kubasiak <kubakubasiak@o2.pl>
+Date:   Sat Oct 7 14:26:37 2017 +0200
+
+    init
+
+[33mcommit 5b3f9d62aa38eaf55e3ab650d4e41b2d295b28fe[m
+Author: Jakub Kubasiak <kubakubasiak@o2.pl>
+Date:   Sat Oct 7 13:23:00 2017 +0200
+
+    Add project files.
+
+[33mcommit 2ef609b70050e96eb8ef57cd00d282061454e427[m
+Author: Jakub Kubasiak <kubakubasiak@o2.pl>
+Date:   Sat Oct 7 13:22:31 2017 +0200
+
+    Add .gitignore and .gitattributes.
