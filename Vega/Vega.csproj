@@ -50,6 +50,7 @@
     <TypeScriptCompile Include="ClientApp\app\models\contact.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\keyValuePair.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\saveVehicle.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\photo.service.ts" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

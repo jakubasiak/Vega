@@ -13,10 +13,13 @@ import { CounterComponent } from './components/counter/counter.component';
 import { VehicleFormComponent } from './components/vehicle-form/vehicle-form.component';
 
 import { VehicleService } from "./services/vehicle.service";
+import { PhotoService } from "./services/photo.service"
 import { AppErrorHandler } from "./app.error-handler";
 import { VehicleListComponent } from "./components/vehicle-list/vehicle-list.component";
 import { PaginationComponent } from "./components/pagination/pagination.component";
 import { ViewVehicleComponent } from "./components/view-vehicle/view-vehicle.component";
+import { BrowserXhrWithProgress, ProgressService } from "./services/progress.service";
+import { BrowserXhr } from "@angular/http";
 
 
 @NgModule({
@@ -49,8 +52,11 @@ import { ViewVehicleComponent } from "./components/view-vehicle/view-vehicle.com
         ])
     ],
     providers: [
-        {provide: ErrorHandler, useClass: AppErrorHandler},
-        VehicleService
+        { provide: ErrorHandler, useClass: AppErrorHandler },
+        { provide: BrowserXhr, useClass: BrowserXhrWithProgress },
+        VehicleService,
+        PhotoService,
+        ProgressService
     ]
 })
 export class AppModuleShared {
